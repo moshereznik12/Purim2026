@@ -38,7 +38,7 @@ with col1:
 with col2:
     st.metric("Valid ✓", int(valid_count), delta=f"{(valid_count/total*100):.1f}%" if total > 0 else "0.0%")
 with col3:
-    st.metric("Invalid ✗", int(invalid_count), delta=f"{(invalid_count/total*100):.1f}%" if total > 0 else "0.0%")
+    st.metric("Invalid ✗", int(invalid_count), delta=f"{(invalid_count/total*100):.1f}%" if total > 0 else "0.0%", delta_color="inverse")
 
 if invalid_count > 0:
     st.subheader("Top Error Analysis")
@@ -62,11 +62,11 @@ if invalid_count > 0:
         
         err_col1, err_col2, err_col3 = st.columns(3)
         with err_col1:
-            st.metric("Most Frequent Error", most_common_error, f"{int(error_freq)} occurrences")
+            st.metric("Most Frequent Error", most_common_error, f"{int(error_freq)} occurrences", delta_color="off")
         with err_col2:
-            st.metric("Top Supplier for Error", top_supplier, f"{int(supplier_freq)} occurrences")
+            st.metric("Top Supplier for Error", top_supplier, f"{int(supplier_freq)} occurrences", delta_color="off")
         with err_col3:
-            st.metric("Top Entity for Error", top_entity, f"{int(entity_freq)} occurrences")
+            st.metric("Top Entity for Error", top_entity, f"{int(entity_freq)} occurrences", delta_color="off")
 
 st.divider()
 
