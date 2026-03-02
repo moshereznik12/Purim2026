@@ -31,8 +31,8 @@ This project is a Streamlit web application that displays a dashboard for valida
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository-url>
-    cd <repository-directory>
+    git clone https://github.com/moshereznik12/Purim2026.git
+    cd Purim2026
     ```
 
 2.  **Create and activate a virtual environment (recommended):**
