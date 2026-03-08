@@ -1,5 +1,8 @@
+import json
 import random
 from datetime import datetime
+import pandas as pd
+from mock_data import create_mock_osdk_client
 
 DATE_FORMAT = "%d-%m-%Y"
 TODAY = datetime.now().strftime(DATE_FORMAT)
@@ -25,4 +28,15 @@ def get_random_timestamp(start_date_str: str, end_date_str: str = str(TODAY)) ->
     return random.uniform(start_timestamp, end_timestamp)
 
 
-print(datetime.fromtimestamp(1770068697.3560815).strftime(DATE_FORMAT))
+def get_osdk_client(filepath='sample_data.json'):
+    with open(filepath, 'r') as f:
+        data = json.load(f)
+    
+    # Convert string dates to Timestamps as they would appear in the SDK
+    for record in data:
+        if 'create_date' in record:
+            record['create_date'] = pd.Timestamp(record['create_date'], unit='s')
+            
+    # Initialize the Mock Client
+    client = create_mock_osdk_client(data, "ValidationRecord")
+    return client
